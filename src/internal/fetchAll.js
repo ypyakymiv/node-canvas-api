@@ -6,14 +6,12 @@ var Bottleneck = require('bottleneck');
 
 require('dotenv').config();
 
-const token = process.env.CANVAS_API_TOKEN;
-
 const limiter = new Bottleneck({
   maxConcurrent: 20,
   minTime: 100
 });
 
-const requestObj = url => ({
+const requestObj = (token, url) => ({
   'method': 'GET',
   'uri': url,
   'json': true,
@@ -23,10 +21,10 @@ const requestObj = url => ({
   }
 });
 
-const fetchAll = (url, result = []) => request(requestObj(url)).then(response => {
+const fetchAll = (token, url, result = []) => request(requestObj(token, url)).then(response => {
   result = [...result, ...response.body];
   const links = linkparser(response.headers.link);
-  return links.next ? fetchAll(links.next.url, result) : result;
+  return links.next ? fetchAll(token, links.next.url, result) : result;
 });
 
 const fetchAllRateLimited = limiter.wrap(fetchAll);

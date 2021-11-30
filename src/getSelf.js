@@ -6,6 +6,6 @@ var fetch = require('./internal/fetch');
 */
 
 function getSelf(token, canvasDomain) {
-  return fetch(token, canvasDomain + '/users/self');
+  return fetch(token, canvasDomain + '/api/v1' + '/users/self');
 }
 module.exports = getSelf;

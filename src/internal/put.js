@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const putRequest = (token, url, body) => request({
   'method': 'PUT',
-  'uri': url,
+  'uri': "https://" + url,
   'json': true,
   'form': body,
   'headers': {

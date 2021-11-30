@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const deleteRequest = (token, url, body) => request({
   'method': 'DELETE',
-  'uri': url,
+  'uri': "https://" + url,
   'json': true,
   'form': body,
   'headers': {

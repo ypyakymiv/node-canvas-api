@@ -11,7 +11,7 @@ const limiter = new Bottleneck({
 
 const requestObj = (token, url) => ({
   'method': 'GET',
-  'uri': url,
+  'uri': "https://" + url,
   'json': true,
   'resolveWithFullResponse': true,
   'headers': {

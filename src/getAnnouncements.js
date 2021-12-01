@@ -23,6 +23,6 @@ function getAnnouncements(token, canvasDomain, courseId, ...options) {
   const oneYearAgo = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
   const today = new Date();
 
-  return fetchAll(token, "http://" + canvasDomain + '/api/v1' + `/announcements?context_codes[]=course_${courseId}&end_date=${stringifyDate(today)}&start_date=${stringifyDate(oneYearAgo)}&latest_only=false&active_only=true&` + buildOptions([getOptions.rubric.assessments, options]));
+  return fetchAll(token, canvasDomain + '/api/v1' + `/announcements?context_codes[]=course_${courseId}&end_date=${stringifyDate(today)}&start_date=${stringifyDate(oneYearAgo)}&latest_only=false&active_only=true&` + buildOptions([getOptions.rubric.assessments, options]));
 }
 module.exports = getAnnouncements;
